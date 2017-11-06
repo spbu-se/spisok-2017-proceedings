@@ -102,7 +102,7 @@ class Section
       \\usepackage{fancyhdr}
 
       \\makeatletter
-      \\newcommand{\\resetHeadWidth}{\\fancy@setoffs}
+      \\newcommand{\\resetHeadWidth}{\\f@nch@setoffs}
       \\makeatother
 
       
