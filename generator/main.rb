@@ -5,7 +5,7 @@ require './generator.rb'
 require './toc.rb'
 require './whole.rb'
 
-confname = "{\\addfontfeature{LetterSpace=-3.5}Материалы 6-й всероссийской научной конференции по проблемам информатики СПИСОК-2016}"
+confname = "{\\addfontfeature{LetterSpace=-3.5}Материалы 7-й всероссийской научной конференции по проблемам информатики СПИСОК-2017}"
 
 sections = load_all_sections(confname)
 
