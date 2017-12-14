@@ -1,0 +1,539 @@
+\documentclass{spisok-article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{bm}
+\usepackage{upref}
+\usepackage{bbold}
+
+\title{Исследование задачи размещения Ролса с прямоугольной метрикой на отрезке прямой\thanks{ Работа выполнена при финансовой поддержке РГНФ, проект \textnumero 16-02-00059.}
+}
+
+\author{Кривулин Н. К.,
+	д.ф.-м.н., профессор кафедры статистического моделирования СПбГУ, nkk@math.spbu.ru\\
+	Плотников П. В.,
+	аспирант кафедры статистического моделирования СПбГУ,
+	pavplot@gmail.com
+}
+
+\usepackage[all]{xy}
+
+\setcounter{tocdepth}{2}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{corollary}{Следствие}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	В статье рассматривается задача размещения точечного объекта на плоскости с прямоугольной метрикой в терминах тропической математики с ограничениями на область размещения в виде отрезка прямой. Предложено полное решение задачи и рассмотрен численный пример. 
+\end{abstract}
+
+\section{Введение}
+
+Тропическая математика -- раздел прикладной математики, занимающийся изучением полуколец с идемпотентным сложением \cite{Maslov1994Idempotent,Golan2003Semirings,Krivulin2009Methods,Butkovic2010Maxlinear}. Модели и методы тропической математики находят применение для решения различных оптимизационных задач в технике, экономике и на производстве. Краткий обзор таких задач можно найти, например, в работе \cite{Krivulin2014Tropical}. В частности, методы тропической оптимизации успешно применяются при решении ряда задач размещения в пространстве, включая минимаксные задачи размещения с чебышевской и прямоугольной метрикой \cite{Krivulin2011Analgebraic,Krivulin2012Anewalgebraic,Krivulin2015Onanalgebraic}.
+
+Минимаксная задача размещения одиночного объекта на плоскости, которую также называют задачей Ролса или задачей посыльного, в прямоугольной метрике имеет при отсутствии ограничений на допустимую область размещения известное геометрическое решение \cite{Elzinga1972Geometrical,Francis1972Ageometrical}. В работе \cite{Krivulin2015Onanalgebraic} предложено полное алгебраическое решение такой задачи в явном виде в замкнутой форме. 
+
+В настоящей статье задача Ролса рассматривается при условии, что допустимое множество размещения имеет вид отрезка произвольной прямой. Сначала вводятся основные определения тропической математики, затем формулируется задача размещения на плоскости с прямоугольной метрикой в терминах тропической математики. Предлагается новое решение задачи, которое позволяет записать результат в более компактной форме, чем решение, полученное в \cite{Krivulin2016Usingtrop}. В заключение, приведен численный пример с графическими иллюстрациями. 
+
+\section{Элементы тропической математики}
+
+Рассмотрим числовое множество $\mathbb{X}$, замкнутое относительно операций сложения $\oplus$ и умножения $\otimes$. Заданное на $\mathbb{X}$ при помощи этих операций коммутативное полукольцо с нулем $\mathbb{0}$ и единицей $\mathbb{1}$ обозначим через $\langle\mathbb{X},\mathbb{0},\mathbb{1},\oplus,\otimes\rangle$ . Будем считать, что сложение обладает свойством идемпотентности, т.е. для любого числа $x\in\mathbb{X}$ выполняется $x\oplus x = x$, а умножение -- обратимо, т.е. для каждого $x\ne\mathbb{0}$ существует обратный элемент $x^{-1}$ такой, что $x\otimes x^{-1}=\mathbb{1}$. В силу того, что $\langle \mathbb{X}\setminus\{\mathbb{0}\}, \mathbb{1}, \otimes \rangle$ образует коммутативную группу по умножению, введенное полукольцо, обычно называется идемпотентным полуполем.
+
+Степень числа с целым показателем вводится стандартным образом. Для любого ненулевого числа $x\in\mathbb{X}$ и натурального числа $n$ определим $x^{0}=\mathbb{1}$, $x^{n} =x\otimes x^{n-1}$, $x^{-n}=(x^{-1})^{n}$ и $\mathbb{0}^{n}=\mathbb{0}$. Будем считать, что операция возведения в целую степень может быть распространена на случай произвольного показателя степени. В частности, для любого $x<\mathbb{1}$ при $n=0$ положим $x^{1/n}=\mathbb{0}$.
+Далее знак умножения $\otimes$ в алгебраических выражениях, как обычно, опускается.
+
+Примером идемпотентного полуполя являются вещественное полуполе
+$
+\mathbb{R}_{\max,+}=\langle\mathbb{R}\cup\{-\infty\},-\infty,0,\max,+\rangle,
+$
+где $\mathbb{R}$ -- множество вещественных чисел.
+
+Нулевым элементом в $\mathbb{R}_{\max,+}$ является $-\infty$, единичным -- число $0$. Каждому числу $x\in\mathbb{R}$ в этом полуполе сопоставляется обратный элемент $x^{-1}$, равный $-x$ в обычной алгебре. Для любой пары чисел $x,y\in\mathbb{R}$ определена степень $x^{y}$, значение которой соответствует арифметическому произведению $xy$. 
+
+\section{Приложения к задачам размещения на прямой}
+
+Рассмотрим минимаксную задачу размещения точечного объекта на плоскости с прямоугольной метрикой и ограничениями на область размещения. Пусть задан набор исходных объектов и некоторое допустимое множество $S\subset\mathbb{R}^{2}$. Требуется разместить новый объект на множестве $S$, относительно уже имеющихся так, чтобы расстояние в прямоугольной метрике, от него до самой удаленного объекта, было минимальным.
+
+Пусть на плоскости $\mathbb{R}^{2}$ имеются два вектора $\bm{x}=(x_{1},x_{2})^{T}$ и $\bm{y}=(y_{1},y_{2})^{T}$. Расстояние между этими векторами в прямоугольной метрике вычисляется по формуле
+$
+\rho(\bm{x},\bm{y})
+=
+|x_{1}-y_{1}|+|x_{2}-y_{2}|.
+$
+
+Рассмотрим набор точек $\bm{r}_{i}=(r_{1i},r_{2i})^{T}\in\mathbb{R}^{2}$ и чисел $w_{i}\in\mathbb{R}$, заданных для всех $i=1,\ldots,m$. Для произвольного вектора $\bm{x}=(x_{1},x_{2})^{T}$ введем функцию
+$$
+\phi(\bm{x})
+=
+\max_{1\leq i \leq m}(\rho(\bm{r}_{i},\bm{x})+w_{i})
+=
+\max_{1\leq i \leq m}(|r_{1i}-x_{1}|+|r_{2i}-x_{2}|+w_{i})
+=
+\phi(x_{1},x_{2}),
+$$
+которая определяет максимальное по всем $i$ расстояние в прямоугольной метрике от точки $\bm{x}$ до точки $\bm{r}_{i}$ с учетом дополнительного слагаемого $w_{i}$.
+
+Зададим множество размещения на плоскости в виде отрезка прямой
+\begin{equation}
+S
+=
+\{(x_{1},x_{2})^{T}\ | \quad f\leq x_{1}\leq g,\ x_{2}=kx_{1}+q\}.
+\label{E-S-fx1g-x2kx1q}
+\end{equation}
+
+Минимаксная задача размещения, или задача Ролса, состоит в том, чтобы найти все векторы $\bm{x} \in S$, на которых достигается минимум
+\begin{equation}
+\begin{aligned}
+&
+\min_{\bm{x}\in S}
+&&
+\phi(\bm{x}).
+\end{aligned}
+\label{P-minphix}
+\end{equation}
+
+В терминах идемпотентного полуполя $\mathbb{R}_{\max,+}$ расстояние между двумя векторами в прямоугольной метрике можно представить в форме
+$
+\rho(\bm{x},\bm{y})
+=
+(x_{1}^{-1}y_{1}\oplus y_{1}^{-1}x_{1})
+(x_{2}^{-1}y_{2}\oplus y_{2}^{-1}x_{2}).
+$
+Тогда целевая функция задачи \eqref{P-minphix} записывается следующим образом:
+\begin{equation*}
+\phi(x_{1},x_{2})
+=
+\bigoplus_{i=1}^{m}w_{i}
+(x_{1}^{-1}r_{1i}\oplus r_{1i}^{-1}x_{1})
+(x_{2}^{-1}r_{2i}\oplus r_{2i}^{-1}x_{2}),
+\end{equation*}
+а множество размещения \eqref{E-S-fx1g-x2kx1q} принимает вид
+\begin{equation*}
+S
+=
+\{(x_{1},x_{2})^{T}\ | \quad f\leq x_{1}\leq g,\ x_{2}=x_{1}^k q\}.
+\end{equation*}
+
+\subsection{Размещение на произвольной прямой}
+
+Будем рассматривать задачу размещения на множестве $S$. Пусть заданы числа $f,g,q,k\in\mathbb{R}$ при условии $f\leq g$. 
+
+Следующий результат обеспечивает полное решение задачи в явном виде.
+
+\begin{lemma}
+	Введем обозначения
+\begin{equation*}
+\begin{aligned}
+a
+=
+\bigoplus_{i=1}^{m}w_{i}r_{1i}r_{2i}^{-1}q, \quad
+b
+=
+\bigoplus_{i=1}^{m}w_{i}r_{1i}^{-1}r_{2i}q^{-1},
+\\
+c
+=
+\bigoplus_{i=1}^{m}w_{i}r_{1i}r_{2i}q^{-1}, \quad
+d
+=
+\bigoplus_{i=1}^{m}w_{i}r_{1i}^{-1}r_{2i}^{-1}q.
+\end{aligned}
+\end{equation*}
+	Тогда справедливы следующие утверждения:
+	\begin{enumerate}\renewcommand\labelenumi{\textup{\theenumi)}}
+		\item
+		если $k<-1$ или $k>1$, то минимум в задаче \eqref{P-minphix} при условии \eqref{E-S-fx1g-x2kx1q} равен
+		\begin{multline*}
+		\mu
+		=
+		a^{1/2}b^{1/2}
+		\oplus
+		a^{(k+1)/2k}c^{(k-1)/2k}
+		\oplus
+		b^{(k+1)/2k}d^{(k-1)/2k}
+		\oplus
+		c^{1/2}d^{1/2}
+		\oplus
+		\\
+		\oplus
+		a(f^{-(k-1)} \oplus g^{-(k-1)})^{-1} 
+		\oplus
+		b(f^{k-1} \oplus g^{k-1})^{-1}
+		\oplus
+		\\
+		\oplus
+		c(f^{k+1} \oplus g^{k+1})^{-1}
+		\oplus
+		d(f^{-(k+1)} \oplus g^{-(k+1)})^{-1}
+		\end{multline*}
+		и достигается тогда и только тогда, когда
+		\begin{multline*}
+		x_{1}
+		=
+		(((\mu a^{-1})^{-1/(k-1)} \oplus (\mu^{-1}b)^{-1/(k-1)})^{-1}\oplus
+		\\
+		\oplus
+		((\mu^{-1}c)^{-1/(k+1)} \oplus (\mu d^{-1})^{-1/(k+1)})^{-1}\oplus f)^{1-\alpha}\\
+		(((\mu^{-1}a)^{-1/(k-1)} \oplus (\mu b^{-1})^{1/(k-1)} )^{-1}\oplus
+		\\
+		\oplus
+		((\mu c^{-1})^{1/(k+1)} \oplus (\mu^{-1}d)^{-1/(k+1)})^{-1}\oplus g^{-1})^{-\alpha},
+		\end{multline*}
+		\begin{equation*}
+		x_{2}
+		=
+		qx_{1}^{k};
+		\end{equation*}
+		\item
+		если $-1\leq k\leq 1$, то минимум равен
+		\begin{multline*}
+		\mu
+		=
+		a^{1/2}b^{1/2}
+		\oplus
+		a^{(k+1)/2}d^{-(k-1)/2}
+		\oplus
+		b^{(k+1)/2}c^{-(k-1)/2}
+		\oplus
+		c^{1/2}d^{1/2}
+		\oplus
+		\\
+		\oplus
+		ag^{k-1}
+		\oplus
+		bf^{-(k-1)}
+		\oplus
+		cg^{-(k+1)}
+		\oplus
+		df^{k+1}
+		\end{multline*}
+		и достигается тогда и только тогда, когда
+		\begin{multline*}
+		x_{1}
+		=
+		((\mu a^{-1})^{1/(k-1)}\oplus(\mu^{-1}c)^{1/(k+1)}\oplus f)^{1-\alpha}\\
+		((\mu b^{-1})^{1/(k-1)}\oplus(\mu^{-1}d)^{1/(k+1)}\oplus g^{-1})^{-\alpha},
+		\end{multline*}
+		\begin{equation*}
+		x_{2}
+		=
+		qx_{1}^{k},
+		\end{equation*}
+		где $\alpha$ -- любое число, удовлетворяющее условию $0\leq\alpha\leq1$.
+	\end{enumerate}
+\end{lemma}
+
+При использовании обычных обозначений найденное решение описывается так:
+\begin{corollary}
+	Введем обозначения
+	\begin{align*}
+	a
+	&=
+	\max_{1\leq i \leq m}(w_{i}-r_{1i}+r_{2i}+q),
+	&
+	b
+	&=
+	\max_{1\leq i \leq m}(w_{i}+r_{1i}-r_{2i}-q),
+	\\
+	c
+	&=
+	\max_{1\leq i \leq m}(w_{i}+r_{1i}+r_{2i}-q),
+	&
+	d
+	&=
+	\max_{1\leq i \leq m}(w_{i}-r_{1i}-r_{2i}+q).
+	\end{align*}
+	Тогда справедливы следующие утверждения:
+	\begin{enumerate}\renewcommand\labelenumi{\textup{\theenumi)}}
+		\item
+		если $k<-1$ или $k>1$, то минимум в задаче \eqref{P-minphix} при условии \eqref{E-S-fx1g-x2kx1q} равен
+	\begin{multline*}
+	\mu
+	=
+	\max\bigg(\frac{a+b}{2},\frac{a(k+1)+c(k-1)}{2k},\frac{b(k+1)+d(k-1)}{2k},\frac{c+d}{2},
+	\\
+	a+\min((k-1)f,(k-1)g),b-\max((k-1)f,(k-1)g),
+	\\
+	c-\max((k+1)f,(k+1)g) ,d+\min((k+1)f,(k+1)g)\bigg)
+	\end{multline*}
+	и достигается тогда и только тогда, когда
+	\begin{multline*}
+	x_{1}
+	=
+	(1-\alpha)\max\left(\min\left(\frac{\mu-a}{k-1},\frac{b-\mu}{k-1}\right),\min\left(\frac{c-\mu}{k+1},\frac{\mu-d}{k+1}\right),f\right)
+	\\
+	-\alpha\max\left(\min\left(\frac{a-\mu}{k-1},\frac{\mu-b}{k-1}\right),\min\left(\frac{\mu-c}{k+1},\frac{d-\mu}{k+1}\right),-g\right),
+	\end{multline*}
+    \begin{equation*}
+	x_{2}
+	=
+	kx_{1}+q;
+	\end{equation*}
+	\item
+		если $-1\leq k\leq 1$, то минимум равен
+	\begin{multline*}
+	\mu
+	=
+	\max\bigg(\frac{a+b}{2},
+	\frac{a(k+1)-d(k-1)}{2},
+	\frac{b(k+1)-c(k-1)}{2},
+	\frac{c+d}{2},
+	\\
+	a+(k-1)g,
+	b-(k-1)f,
+	c-(k+1)g,
+	d+(k+1)f\bigg)
+	\end{multline*}
+	и достигается тогда и только тогда, когда
+	\begin{equation*}
+	x_{1}
+	=
+	(1-\alpha)\max\left(\frac{\mu-a}{k-1},\frac{c-\mu}{k+1},f\right)
+	-
+	\alpha\max\left(\frac{\mu-b}{k-1},\frac{d-\mu}{k+1},-g\right),
+	\end{equation*}
+	\begin{equation*}
+	x_{2}
+	=
+	kx_{1}+q,
+	\end{equation*}
+		где $\alpha$ -- любое число, удовлетворяющее условию $0\leq\alpha\leq1$.
+	\end{enumerate}
+\end{corollary}
+
+\section{Иллюстрация результатов на примерах}
+
+Рассмотрим числовой пример. Пусть задано множество точек 
+\begin{equation*}
+\bm{r}_{1} = (1,\ 7)^{T}, \quad \bm{r}_{2} = (3,\ 3)^{T}, \quad \bm{r}_{3} = (4,\ 6)^{T}, \quad \bm{r}_{4} = (5,\ 3)^{T},
+\end{equation*}
+\begin{equation*}
+\bm{r}_{5} = (7,\ 2)^{T}, \quad \bm{r}_{6} = (9,\ 1)^{T}, \quad \bm{r}_{7} = (9,\ 9)^{T}.
+\end{equation*}
+
+Сначала рассмотрим решение задачи размещения \eqref{P-minphix}, в которой допустимое множество представляет собой отрезок, заданный в виде 
+\begin{equation*}
+S_{1}
+=
+\{(x_{1},x_{2})^{T}\ | \quad 5\leq x_{1}\leq 8,\ x_{2}=-2x_{1}+19\}.
+\end{equation*}
+Решение такой задачи приведено на Рис.~1, где выделенный жирным отрезок прямой представляет множество решений задачи без ограничений, отрезок обычной толщины -- допустимое множество размещения, а точка на пересечении -- решение задачи с ограничениями.
+
+Перейдем к рассмотрению случая, в котором допустимая область размещения задана следующим образом:
+\begin{equation*}
+S_{2}
+=
+\{(x_{1},x_{2})^{T}\ | \quad 4\leq x_{1}\leq 7,\ x_{2}=2x_{1}-6\}.
+\end{equation*}
+
+В этом случае, как показано на Рис.~2, допустимая область размещения не пересекается с множеством решений задачи без ограничений. Решение исходной задачи изображено точкой, лежащей на отрезке $S_{2}$.
+
+\begin{flushleft}
+	\begin{picture}(320,200)
+	
+	\put(0,45){\vector(1,0){140}} %ось x
+	\put(5,40){\vector(0,1){140}} %ось y
+	\put(137.5,34){$x_1$} %подпись ось х
+	\put(-9,178.5){$x_2$} %подпись ось y
+	\put(-6,34){$0$} %центр 0
+	
+	%горизонтальные
+	\put(25,42){\line(0,1){3}} %насечки
+	\put(23,33.5){$2$}
+	\put(45,42){\line(0,1){3}} %насечки
+	\put(43,33.5){$4$}
+	\put(65,42){\line(0,1){3}} %насечки
+	\put(63,33.5){$6$}
+	\put(85,42){\line(0,1){3}} %насечки
+	\put(83,33.5){$8$}
+	\put(105,42){\line(0,1){3}} %насечки
+	\put(101,33.5){$10$}
+	\put(125,42){\line(0,1){3}} %насечки
+	\put(121,33.5){$12$}
+	
+	%вертикальные
+	\put(2,65){\line(1,0){3}} %насечки
+	\put(-7.5,65){$2$}
+	\put(2,85){\line(1,0){3}} %насечки
+	\put(-7.5,85){$4$}
+	\put(2,105){\line(1,0){3}} %насечки
+	\put(-7.5,105){$6$}
+	\put(2,125){\line(1,0){3}} %насечки
+	\put(-7.5,125){$8$}
+	\put(2,145){\line(1,0){3}} %насечки
+	\put(-12.5,145){$10$}
+	\put(2,165){\line(1,0){3}} %насечки
+	\put(-12.5,165){$12$}
+	
+	\put(55,135,5){\line(1,-2){30}}
+	\put(72,102){\circle{4}} %решение
+	
+	\put(15,115){\circle*{3}}
+	\put(45,105){\circle*{3}}
+	\put(95,55){\circle*{3}}
+	\put(35,75){\circle*{3}}
+	\put(75,65){\circle*{3}}
+	\put(55,75){\circle*{3}}
+	\put(95,135){\circle*{3}}
+	
+	\put(65,96){\line(1,1){10}} %линия
+	\put(65,95.5){\line(1,1){10}} %линия
+	\put(65,95){\line(1,1){10}} %линия
+	\put(65,94.5){\line(1,1){10}} %линия
+	\put(65,94){\line(1,1){10}} %линия
+	
+	\put(-5,2){\textsf{Рис.1 Размещение на отрезке $S_{1}$.}} % подпись к рисунку
+	
+	%второй рисунок 
+	\put(165,45){\vector(1,0){150}} %ось x 
+	\put(170,40){\vector(0,1){140}} %ось y
+	\put(312.5,34){$x_1$} %подпись ось х
+	\put(156,178.5){$x_2$} %подпись ось y
+	\put(159,34){$0$} %центр 0
+	
+	%горизонтальные
+	\put(190,42){\line(0,1){3}} %насечки
+	\put(188,33.5){$2$}
+	\put(210,42){\line(0,1){3}} %насечки
+	\put(208,33.5){$4$}
+	\put(230,42){\line(0,1){3}} %насечки
+	\put(228,33.5){$6$}
+	\put(250,42){\line(0,1){3}} %насечки
+	\put(248,33.5){$8$}
+	\put(270,42){\line(0,1){3}} %насечки
+	\put(266,33.5){$10$}
+	\put(290,42){\line(0,1){3}} %насечки
+	\put(286,33.5){$12$}
+	
+	%вертикальные
+	\put(167,65){\line(1,0){3}} %насечки
+	\put(157.5,65){$2$}
+	\put(167,85){\line(1,0){3}} %насечки
+	\put(157.5,85){$4$}
+	\put(167,105){\line(1,0){3}} %насечки
+	\put(157.5,105){$6$}
+	\put(167,125){\line(1,0){3}} %насечки
+	\put(157.5,125){$8$}
+	\put(167,145){\line(1,0){3}} %насечки
+	\put(152.5,145){$10$}
+	\put(167,165){\line(1,0){3}} %насечки
+	\put(152.5,165){$12$}
+	
+	\put(210,65){\line(1,2){30}} %граница+
+	\put(225,95){\circle{4}} %решение
+
+	\put(180,115){\circle*{3}}
+	\put(200,75){\circle*{3}}
+	\put(210,105){\circle*{3}}
+	\put(220,75){\circle*{3}}
+	\put(240,65){\circle*{3}}
+	\put(260,55){\circle*{3}}
+	\put(260,135){\circle*{3}}
+
+	\put(230,96.5){\line(1,1){10}} %линия
+	\put(230,96){\line(1,1){10}} %линия
+	\put(230,95.5){\line(1,1){10}} %линия
+	\put(230,95){\line(1,1){10}} %линия
+	\put(230,94.5){\line(1,1){10}} %линия
+	
+	\put(160,2){\textsf{Рис.2 Размещение на отрезке $S_{2}$.}} %% подпись к рисунку
+	\label{fig2}
+	
+	\end{picture}
+\end{flushleft}
+
+
+\begin{thebibliography}{99}
+	
+	\bibitem{Maslov1994Idempotent}
+	\textit{Маслов~В.~П., Колокольцов~В.~Н.}
+	Идемпотентный анализ и его применение в оптимальном управлении.
+	М.: Физматлит, 1994.
+	144~с.
+	
+	\bibitem{Golan2003Semirings}
+	\textit{Golan~J.~S.}
+	Semirings and Affine Equations Over Them.
+	New York: Springer, 2003.
+	Vol.~556 of Mathematics and Its Applications.
+	256~p.
+	
+	\bibitem{Krivulin2009Methods}
+	\textit{Кривулин~Н.~К.}
+	Методы идемпотентной алгебры в задачах моделирования и анализа сложных систем.
+	СПб.: Изд-во С.-Петерб. ун-та., 2009.
+	256~с.
+	
+	\bibitem{Butkovic2010Maxlinear}
+	\textit{Butkovi\v{c}~P.}
+	Max-linear Systems. Springer Monographs in Mathematics.
+	London: Springer, 2010.
+	272~p.
+	
+	\bibitem{Krivulin2014Tropical}
+	\textit{Krivulin~N.}
+	Tropical optimization problems //
+	Advances in Economics and Optimization: Collected Scientific Studies Dedicated to the Memory of L.~V.~Kantorovich /
+	Ed. by L.~A.~Petrosyan, J.~V.~Romanovsky, D.~W.~K.~Yeung.
+	New York: Nova Science Publ., 2014.
+	P.~195--214.
+	
+	\bibitem{Krivulin2011Analgebraic}
+	\textit{Krivulin~N.}
+	 An algebraic approach to multidimensional minimax location problems with Chebyshev distance // 
+	 WSEAS Trans. Math.
+	 2011.
+	 Vol.~10, N~6.
+	 P.~191-–200.	
+	 
+	 \bibitem{Krivulin2012Anewalgebraic}
+	 \textit{Krivulin~N.}
+	A new algebraic solution to multidimensional minimax location problems with Chebyshev distance // 
+	 WSEAS Trans. Math.
+	 2012.
+	 Vol.~11, N~7.
+	 P.~605–-614.
+	
+	\bibitem{Elzinga1972Geometrical}
+	\textit{Elzinga~J., Hearn~D.~W.}
+	Geometrical solutions for some minimax location problems //
+	Transport. Sci.
+	1972.
+	Vol.~6, N~4.
+	P.~379--394.
+	
+	\bibitem{Francis1972Ageometrical}
+	\textit{Francis~R.~L.}
+	A geometrical solution procedure for a rectilinear distance minimax location problem //
+	AIIE Trans.
+	1972.
+	Vol.~4, N~4.
+	P.~328--332.
+	
+	\bibitem{Krivulin2015Onanalgebraic}
+	\textit{Krivulin~N.~K., Plotnikov~P.~V.}
+	On an algebraic solution of the Rawls location problem in the plane with rectilinear metric //
+	Vestnik St.~Petersburg Univ. Math.
+	2015.
+	Vol.~48, N~2.
+	P.~75-81.
+	
+	\bibitem{Krivulin2016Usingtrop}
+	\textit{Krivulin~N.~K., Plotnikov~P.~V.}
+	Using tropical optimization to solve minimax location
+	problems with a rectilinear metric on the line //
+	Vestnik St.~Petersburg Univ. Math.
+	2016.
+	Vol.~49, N~4.
+	P.~340-349.	
+	
+\end{thebibliography}
+
+\end{document}
