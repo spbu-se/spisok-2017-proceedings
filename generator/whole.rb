@@ -21,6 +21,6 @@ def gen_whole(sections)
       TOC
   end
 
-  File::plus_x File::join("..", "sections", "_gen_whole.sh")
+  File::u_plus_x File::join("..", "sections", "_gen_whole.sh")
 
 end

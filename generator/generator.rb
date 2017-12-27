@@ -143,7 +143,7 @@ class Section
           COMPILE
       end
 
-      File::plus_x File::join(@folder, "_section-compile.sh")
+      File::u_plus_x File::join(@folder, "_section-compile.sh")
 
       cur_page
   end
