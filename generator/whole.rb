@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+require './misc.rb'
+
 def gen_whole(sections)
   File::open(File::join("..", "sections", "_gen_whole.sh"), "w:UTF-8") do |f|
-    f.puts "#!/bin/sh\n"
+    f.puts "#!/bin/bash\n"
     sections.each do |s|
       f.puts <<~SPP
         pushd #{s.folder}
@@ -18,4 +20,7 @@ def gen_whole(sections)
       pdftk _a_begin.pdf #{sections.map {|s| s.pdfname}.join(' ')} _toc.pdf _z_end.pdf cat output spisok.pdf
       TOC
   end
+
+  File::plus_x File::join("..", "sections", "_gen_whole.sh")
+
 end

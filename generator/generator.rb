@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require './misc.rb'
+
 class Section
   def maketex(start_page)
     @start_page = start_page
@@ -129,7 +131,7 @@ class Section
           @articles.map { |a| File::basename(a.fullfile) } +
           if add_empty then ['../../generator/a5-empty.pdf'] else [] end
         f.write <<~COMPILE
-          #!/bin/sh
+          #!/bin/bash
           xelatex _section-overlay.tex
           xelatex _section-overlay.tex
 
@@ -140,6 +142,8 @@ class Section
 
           COMPILE
       end
+
+      File::plus_x File::join(@folder, "_section-compile.sh")
 
       cur_page
   end
